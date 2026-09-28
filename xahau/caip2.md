@@ -2,7 +2,7 @@
 namespace-identifier: xahau-caip2
 title: Xahau Namespace - Blockchain ID Specification
 author: Ekiserrepé (@Ekiserrepe)
-discussions-to: https://github.com/ChainAgnostic/namespaces/discussions
+discussions-to: https://github.com/ChainAgnostic/namespaces/pull/231
 status: Draft
 type: Standard
 created: 2026-09-28
