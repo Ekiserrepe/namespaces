@@ -6,7 +6,7 @@ discussions-to: https://github.com/ChainAgnostic/namespaces/discussions
 status: Draft
 type: Informational
 created: 2026-09-28
-requires: ["CAIP-2"]
+requires: ["CAIP-2", "CAIP-10", "CAIP-19", "CAIP-122"]
 ---
 
 # Namespace for Xahau Chains
@@ -37,6 +37,12 @@ Each Xahau chain is identified by the numeric network ID returned by its
 The network ID is also included in signed Xahau transactions for replay
 protection.
 
+Xahau accounts use checksummed classic addresses beginning with `r`.
+The ecosystem supports native XAH, account-issued fungible tokens, and
+URI Tokens as its native non-fungible asset type.
+Xahau accounts can also authenticate with off-chain services through the
+CAIP-122 profile defined by this namespace.
+
 ## Governance
 
 The Xahau protocol is implemented in the open-source `xahaud` repository.
@@ -49,6 +55,10 @@ by the Xahau protocol.
 - [Xahau Documentation][] - Official developer and protocol documentation.
 - [Xahau Whitepaper][] - Architecture, Hooks, tokenomics, and governance.
 - [xahaud][] - Open-source server implementation for the Xahau network.
+- [CAIP-2 Profile](./caip2.md) - Xahau blockchain identifiers.
+- [CAIP-10 Profile](./caip10.md) - Xahau account identifiers.
+- [CAIP-19 Profile](./caip19.md) - Xahau asset identifiers.
+- [CAIP-122 Profile](./caip122.md) - Sign-In With Xahau.
 
 [Xahau Documentation]: https://xahau.network/docs/
 [Xahau Whitepaper]: https://xahau.network/docs/resources/whitepaper/
