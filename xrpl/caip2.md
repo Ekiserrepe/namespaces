@@ -6,6 +6,7 @@ discussions-to: https://github.com/ChainAgnostic/namespaces/pull/57/
 status: Draft
 type: Standard
 created: 2023-02-23
+updated: 2026-09-28
 requires: ["CAIP-2"]
 ---
 
@@ -18,12 +19,13 @@ requires: ["CAIP-2"]
 The namespace `xrpl` refers to the XRP Ledger ecosystem, including its
 alternative testing and development networks.
 
-The XRP Ledger ecosystem consists of several different blockchains. There is one
-production network called `livenet` where all business on the XRP Ledger takes
-place, a testing network called `testnet` for stable releases and a development
-network called `devnet` for beta releases. There are also some preview networks
-for particularly large network changes. The networks are identified by a
-numerical `network_id`.
+The XRP Ledger ecosystem consists of several different blockchains.
+The XRP Ledger has a production network called `livenet`, a testing network
+called `testnet` for stable releases, and a development network called `devnet`
+for beta releases.
+There are also preview networks for particularly large network changes and
+XRPL protocol sidechains such as Xahau.
+The networks are identified by a numerical `network_id`.
 
 An identifier for an XRPL chain consists of the `xrpl` namespace prefix followed
 by the chain's unique `network_id`, an unsigned integer, i.e.
@@ -81,8 +83,18 @@ curl --location --request POST "https://xrplcluster.com/" \
 ```
 The response will return a JSON object which will include server information.
 
-The network reference can be retrieved from the field `response.info.network_id`
-in the response of the `server_info` RPC request.
+The network reference can be retrieved from the field
+`response.result.info.network_id` in the response of the `server_info` RPC
+request.
+
+For Xahau, the public HTTPS endpoints are `https://xahau.network` for Mainnet
+and `https://xahau-test.net` for Testnet.
+The Xahau documentation identifies these networks as `21337` and `21338`,
+respectively.
+
+Xahau transactions must include their network ID in the `NetworkID` field.
+This follows the XRPL protocol rule that networks with an ID greater than 1024
+use the field for cross-network replay protection.
 
 ### Backwards Compatibility
 
@@ -104,6 +116,12 @@ xrpl:2
 
 # AMM - Devnet
 xrpl:25
+
+# Xahau Mainnet
+xrpl:21337
+
+# Xahau Testnet
+xrpl:21338
 ```
 
 ## References
@@ -113,6 +131,8 @@ xrpl:25
 - [XRPL Public Nodes][] - Public nodes for the different XRPL networks.
 - [XRPL Server Info Request][] - RPC request to get the `network_id`.
 - [XRPL Network ID][] - The definition of the `network_id` value.
+- [Xahau Network Endpoints][] - Public endpoints and network IDs for Xahau Mainnet and Testnet.
+- [Xahau Transaction Common Fields][] - `NetworkID` requirements and replay protection for Xahau transactions.
 - [CAIP-2][]
 
 [CAIP-2]: https://chainAgnostic.org/CAIPS/caip-2
@@ -121,6 +141,8 @@ xrpl:25
 [XRPL Network ID]: https://github.com/XRPLF/rippled/blob/8f514937a41eba90d98fb99daf938925527f0c44/cfg/rippled-example.cfg#L818-L820
 [XRPL Public Nodes]: https://xrpl.org/public-servers.html 
 [XRPL Server Info Request]: https://xrpl.org/server_info.html
+[Xahau Network Endpoints]: https://xahau.network/docs/infrastructure/installing-xahaud/
+[Xahau Transaction Common Fields]: https://xahau.network/docs/protocol-reference/transactions/transaction-common-fields/
 
 
 ## Copyright
